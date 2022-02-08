@@ -60,6 +60,7 @@ li {
 }
 #color-tool #color-list {
   display: none;
+  margin-top: 1rem;
 }
 #color-tool .color-option {
   display: flex;

@@ -14,8 +14,20 @@ const innerHeight = HEIGHT - MARGIN.top - MARGIN.bottom;
 // handle color tool here
 const colorTool = document.querySelector("#color-tool");
 const colorList = document.querySelector("#color-list");
+
 // populate the list with the colors
 const ul = document.createElement("ul");
+// create custom color picker
+const li = document.createElement("li");
+const option1 = document.createElement("input");
+option1.type = "color";
+option1.classList.add("primary-picker");
+const option2 = document.createElement("input");
+option2.type = "color";
+option2.classList.add("secondary-picker");
+li.appendChild(option1);
+li.appendChild(option2);
+ul.appendChild(li);
 colors.forEach((d, i) => {
   const li = document.createElement("li");
   li.classList.add("color-option");
@@ -48,6 +60,15 @@ colorList.addEventListener("click", (e) => {
       `${newColors.secondary}`
     );
   }
+});
+
+document.querySelector(".primary-picker").addEventListener("input", (e) => {
+  const color = e.target.value;
+  document.documentElement.style.setProperty("--primary", `${color}`);
+});
+document.querySelector(".secondary-picker").addEventListener("input", (e) => {
+  const color = e.target.value;
+  document.documentElement.style.setProperty("--secondary", `${color}`);
 });
 
 // global scales

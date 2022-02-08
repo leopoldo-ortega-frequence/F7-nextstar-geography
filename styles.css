@@ -1,0 +1,198 @@
+:root {
+  --primary: #1769aa;
+  --secondary: #2196f3;
+  --dark: #7c7c7c;
+  --box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: "Lucida Sans", sans-serif;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+li {
+  list-style: none;
+}
+/* color tool */
+#color-tool {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 5;
+}
+
+#color-tool .tool-icon {
+  height: 60px;
+  width: 60px;
+  box-shadow: var(--box-shadow);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: var(--primary);
+  opacity: 1;
+  transition: all ease 300ms;
+}
+#color-tool .tool-icon:hover,
+#color-tool .color-option:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+#color-tool #color-list {
+  display: none;
+}
+#color-tool .color-option {
+  display: flex;
+  margin: 8px 0;
+  opacity: 1;
+  transition: all ease 300ms;
+}
+#color-tool .active {
+  display: block !important;
+}
+
+#color-tool .color-box {
+  width: 50px;
+  height: 50px;
+}
+
+/* Graph styles */
+#container {
+  box-shadow: var(--box-shadow);
+  width: 1000px;
+  height: 790px;
+  position: relative;
+}
+#container::before {
+  content: "";
+  background: url("./assets/F7_greyscale_bg.jpeg") no-repeat center center fixed;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.06;
+  z-index: -2;
+}
+/* Header styles */
+#container .header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1.5rem;
+}
+#container .header::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-image: url("./assets/TopBar.png") !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 300px;
+  width: 95%;
+  z-index: -1;
+}
+
+#container .header .header-title {
+  color: var(--primary);
+  margin-top: 2rem;
+}
+#container .header .header-img {
+  width: 100px;
+  margin: 1rem 4.8rem 0 0;
+}
+
+/* Footer styles */
+
+#container .footer {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+}
+
+#container .footer .footer-info-container {
+  position: relative;
+  border-right: 50px solid transparent;
+  border-top: 60px solid;
+  width: 60%;
+  border-top-color: var(--secondary);
+}
+
+#container .footer .footer-info {
+  color: white;
+  position: absolute;
+  top: -38px;
+  left: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 3rem;
+}
+
+#container .footer .footer-date {
+  color: var(--primary);
+  font-size: 1.4rem;
+  width: 40%;
+  padding-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+/* customize fill and stroke colors */
+.fill-primary {
+  fill: var(--primary);
+}
+.stroke-primary {
+  stroke: var(--primary);
+}
+.fill-dark {
+  fill: var(--dark);
+}
+.stroke-dark {
+  stroke: var(--dark);
+}
+
+/* customize graph tick text and lines */
+
+.graph-primary text {
+  fill: var(--primary);
+}
+.graph-primary line {
+  stroke: var(--primary);
+}
+
+/* foreign object text display */
+.svg-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  color: var(--primary);
+  height: 100%;
+}
+
+/* Hide tick text on compositon graph */
+.geo-graph-container .tick text {
+  display: none;
+}

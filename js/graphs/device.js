@@ -1,3 +1,5 @@
+import { deviceSVG } from "./deviceImages.js";
+
 export const renderDevice = (selector, props) => {
   // props --> do this to make graph more modular
   const { data, title, xProp, yProp } = props;
@@ -17,13 +19,12 @@ export const renderDevice = (selector, props) => {
     .text((d) => d[yProp]);
 
   gEnter
-    .append("image")
-    .attr("xlink:href", (d) => `./assets/${d[yProp]}.svg`)
-    .attr("x", function (d) {
-      return (81 - this.getBBox().width) / 2;
+    .append("g")
+    .attr("class", "icons-container")
+    .attr("transform", (d, i) => {
+      return `translate(${0},${i * 75 + 10}) scale(0.7)`;
     })
-    .attr("y", (d, i) => i * 75 + 10)
-    .attr("height", 50);
+    .html((d) => deviceSVG[d[yProp]]);
 
   // no loop approach to appending circles
   gEnter

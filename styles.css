@@ -164,6 +164,13 @@ li {
 .fill-primary {
   fill: var(--primary);
 }
+.fill-secondary {
+  fill: var(--secondary);
+}
+.fill-tertiary {
+  fill: var(--secondary);
+  opacity: 0.5;
+}
 .stroke-primary {
   stroke: var(--primary);
 }
@@ -196,4 +203,19 @@ li {
 /* Hide tick text on compositon graph */
 .geo-graph-container .tick text {
   display: none;
+}
+
+/* Rogue button */
+#device-btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 1rem;
+  border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  right: -100px;
+}
+
+#device-btn:hover {
+  opacity: 0.8;
 }

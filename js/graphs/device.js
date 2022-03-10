@@ -9,7 +9,6 @@ export const renderDevice = (selector, props) => {
     .data(data)
     .enter()
     .append("g");
-
   gEnter
     .append("text")
     .attr("class", "fill-primary")
@@ -27,17 +26,29 @@ export const renderDevice = (selector, props) => {
     .html((d) => deviceSVG[d[yProp]]);
 
   // no loop approach to appending circles
-  gEnter
+  const rectEnter = gEnter
     .append("g")
-    .selectAll("rect")
+    .attr("class", "rect-col-container")
+    .selectAll(".rect-col")
     .data((d, i) => d3.range(Math.ceil(d[xProp]) / 3).map((d) => i))
-    .enter()
+    .enter();
+  rectEnter
     .append("rect")
     .attr("class", "fill-primary")
     .attr("width", 6)
     .attr("height", 30)
     .attr("x", (d, i) => i * 6 * 1.8 + 100)
     .attr("y", (d) => d * 80 + 18);
+
+  gEnter
+    .append("text")
+    .attr("class", "fill-primary")
+    .attr("y", (d, i) => i * 75 + 40)
+    .attr("x", (d) => {
+      return Math.ceil(d.value / 3) * 11 + 100;
+    })
+    .text((d) => `${d.value}%`);
+
   selector
     .append("text")
     .attr("class", "title fill-primary")

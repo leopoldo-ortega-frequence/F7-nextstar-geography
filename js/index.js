@@ -1,3 +1,6 @@
+// DOM selectors
+const deviceButton = $("#device-btn");
+
 // data imports
 import { incomeData, ageData, compData, deviceData, colors } from "./data.js";
 // graphs imports
@@ -5,6 +8,7 @@ import { renderIncome } from "./graphs/income.js";
 import { renderAge } from "./graphs/age.js";
 import { renderGeo } from "./graphs/geo.js";
 import { renderDevice } from "./graphs/device.js";
+import { DeviceDoughnut } from "./graphs/deviceCircle.js";
 const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
 const WIDTH = 1000;
 const HEIGHT = 640;
@@ -158,8 +162,26 @@ renderGeo(geoG, {
 
 renderDevice(deviceG, {
   data: deviceData,
-
   title: "Device Usage",
   xProp: "value",
   yProp: "name",
+});
+
+// event listeners for buttons
+
+deviceButton.click((e) => {
+  deviceG.html("");
+  deviceButton.toggleClass("active");
+  if (deviceButton[0].className === "active") {
+    // rednder circle chart
+    const deviceDoughnut = new DeviceDoughnut(deviceG, deviceData, 400, 300);
+  } else {
+    // render current graph
+    renderDevice(deviceG, {
+      data: deviceData,
+      title: "Device Usage",
+      xProp: "value",
+      yProp: "name",
+    });
+  }
 });

@@ -1,6 +1,3 @@
-// DOM selectors
-const deviceButton = $("#device-btn");
-
 // data imports
 import { incomeData, ageData, compData, deviceData, colors } from "./data.js";
 // graphs imports
@@ -9,6 +6,8 @@ import { renderAge } from "./graphs/age.js";
 import { renderGeo } from "./graphs/geo.js";
 import { renderDevice } from "./graphs/device.js";
 import { DeviceDoughnut } from "./graphs/deviceCircle.js";
+import { treeMapChart } from "./graphs/ageTreeMap.js";
+import { spiderChart } from "./graphs/spiderChart.js";
 const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
 const WIDTH = 1000;
 const HEIGHT = 640;
@@ -169,10 +168,10 @@ renderDevice(deviceG, {
 
 // event listeners for buttons
 
-deviceButton.click((e) => {
+$("#device-btn").click(function (e) {
   deviceG.html("");
-  deviceButton.toggleClass("active");
-  if (deviceButton[0].className === "active") {
+  $(this).toggleClass("active");
+  if ($(this)[0].className.includes("active")) {
     // rednder circle chart
     const deviceDoughnut = new DeviceDoughnut(deviceG, deviceData, 400, 300);
   } else {
@@ -185,3 +184,72 @@ deviceButton.click((e) => {
     });
   }
 });
+
+$("#age-btn").click(function (e) {
+  ageG.html("");
+  $(this).toggleClass("active");
+  if ($(this)[0].className.includes("active")) {
+    ageData.forEach((d) => {
+      d.group = "Age";
+    });
+    // rednder circle chart
+    treeMapChart(ageG, {
+      data: ageData,
+      graphWidth: 390,
+      graphHeight: 200,
+      width: 760,
+      title: "Age Ranges",
+      interestCategories: ["demographic", "Industry", "Interests", "Multiple"],
+    });
+  } else {
+    // render current graph
+    renderAge(ageG, {
+      data: ageData,
+      width: 350,
+      height: 230,
+      title: "Age Ranges",
+      xProp: "name",
+      yProp: "value",
+      radius: 8,
+      description: "Based on population averages of your target area",
+    });
+  }
+});
+
+$("#income-btn").click(function (e) {
+  incomeG.html("");
+  $(this).toggleClass("active");
+  if ($(this)[0].className.includes("active")) {
+    console.log("render spider chart");
+  } else {
+    // render current graph
+    renderIncome(incomeG, {
+      data: incomeData,
+      width: 370,
+      height: 200,
+      title: "Income Range",
+      xProp: "value",
+      yProp: "name",
+      colorScale: colorScale,
+    });
+  }
+});
+
+// Config for the Radar chart
+// var config = {
+//   w: 300,
+//   h: 300,
+//   maxValue: 100,
+//   levels: 4,
+//   ExtraWidthX: 300,
+// };
+
+// //Call function to draw the Radar chart
+
+// RadarChart.draw(
+//   incomeG,
+//   [
+//    incomeData
+//   ],
+//   config
+// );

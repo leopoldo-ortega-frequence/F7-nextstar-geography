@@ -71,7 +71,7 @@ export const incomeData = generate(100, 4, [
   "150k+",
 ]);
 
-export const ageData = generate(20, 7, [
+export const ageData = generate(18, 7, [
   "under 18",
   "18-25",
   "25-35",

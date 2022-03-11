@@ -206,16 +206,76 @@ li {
 }
 
 /* Rogue button */
-#device-btn {
+.graph-button {
   background-color: var(--primary);
   color: white;
   padding: 10px 1rem;
   border-radius: 6px;
   position: absolute;
+}
+.graph-button:hover {
+  opacity: 0.8;
+}
+
+#device-btn {
   top: 50%;
   right: -100px;
 }
 
-#device-btn:hover {
-  opacity: 0.8;
+#age-btn {
+  right: -100px;
+  top: 10%;
+}
+
+#income-btn {
+  left: -100px;
+  top: 10%;
+}
+
+/* Spider chart */
+#wrap {
+  display: table;
+  width: 500px;
+  height: 400px;
+  border: 1px solid #cdcdcd;
+}
+.spider-container {
+  display: table-cell;
+  width: 80%;
+  height: 100%;
+}
+#legend {
+  display: table-cell;
+  width: 20%;
+  height: 100%;
+  text-align: left;
+  vertical-align: middle;
+}
+.legend-item {
+  display: inline-block;
+}
+.legend-item .text {
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 5px;
+}
+.legend-item .point {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid;
+}
+.grid {
+  stroke: #c4c4c4;
+  shape-rendering: crispEdges;
+}
+.axis {
+  stroke: #c4c4c4;
+  shape-rendering: crispEdges;
+}
+.axis-label {
+  fill: #737373;
+}
+.grid-label {
+  fill: #737373;
 }

@@ -231,6 +231,10 @@ li {
   left: -100px;
   top: 10%;
 }
+#geo-btn {
+  left: -100px;
+  top: 50%;
+}
 
 /* Spider chart */
 #wrap {
@@ -270,7 +274,7 @@ li {
   shape-rendering: crispEdges;
 }
 .axis {
-  stroke: #c4c4c4;
+  /* stroke: #c4c4c4; */
   shape-rendering: crispEdges;
 }
 .axis-label {

@@ -8,6 +8,7 @@ import { renderDevice } from "./graphs/device.js";
 import { DeviceDoughnut } from "./graphs/deviceCircle.js";
 import { treeMapChart } from "./graphs/ageTreeMap.js";
 import { spiderChart } from "./graphs/spiderChart.js";
+import { gridPlot } from "./graphs/gridPlot.js";
 const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
 const WIDTH = 1000;
 const HEIGHT = 640;
@@ -185,6 +186,33 @@ $("#device-btn").click(function (e) {
   }
 });
 
+$("#geo-btn").click(function (e) {
+  geoG.html("");
+  $(this).toggleClass("active");
+  if ($(this)[0].className.includes("active")) {
+    // render new chart
+    gridPlot(geoG, {
+      data: compData,
+      width: 220,
+      height: 220,
+      title: "Geographic Composition",
+      xProp: "name",
+      yProp: "value",
+      colorScale: colorScale,
+    });
+  } else {
+    renderGeo(geoG, {
+      data: compData,
+      width: 220,
+      height: 220,
+      title: "Geographic Composition",
+      xProp: "name",
+      yProp: "value",
+      colorScale: colorScale,
+    });
+  }
+})
+
 $("#age-btn").click(function (e) {
   ageG.html("");
   $(this).toggleClass("active");
@@ -220,7 +248,10 @@ $("#income-btn").click(function (e) {
   incomeG.html("");
   $(this).toggleClass("active");
   if ($(this)[0].className.includes("active")) {
-    console.log("render spider chart");
+    console.log(incomeData);
+    spiderChart(incomeG, {
+      data: incomeData
+    })
   } else {
     // render current graph
     renderIncome(incomeG, {

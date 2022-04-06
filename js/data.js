@@ -82,9 +82,9 @@ export const ageData = generate(18, 7, [
 ]);
 
 export const compData = generate(100, 5, [
-  "caucasian",
-  "Asians",
-  "Hispanics",
-  "Others",
   "African Americans",
+  "Asians",
+  "Caucasians",
+  "Others",
+  "Hispanics",
 ]);
